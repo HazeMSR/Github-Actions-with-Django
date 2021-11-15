@@ -1,0 +1,16 @@
+language: python
+sudo: enabled
+services:
+    - postgres
+python:
+    - "3.10"
+env:
+    global:
+     - TRAVIS=true
+before_install:
+    - psql -c 'CREATE DATABASE IF NOT EXISTS login;'
+# command to install dependencies
+install:
+    - pip install -r requirements.txt
+script:
+    python manage.py test
